@@ -1,14 +1,20 @@
 {{ template "base" . }} {{ define "title" }} RPS web - Jugar {{ end }} {{ define
 "content" }}
-<section>
+<section class="container">
   <div class="container">
     <div class="row">
       <div class="col py-5 text-center">
         <h2>{{ .Name }}</h2>
         <p class="fw-bold" id="player_score">0</p>
 
-        <div class="d-grid gap-2 card p-3">
-          <button class="btn btn-outline-success" onclick="choice(0);">
+        <div class="p-3">
+          <div class="d-flex justify-content-center result">
+            <img id="player_choice_image" />
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2 p-3">
+          <button class="btn" onclick="choice(0);">
             <img
               src="static/img/rock.png"
               class="img-fluid"
@@ -18,7 +24,7 @@
             />
             <span class="fw-bold">Piedra</span>
           </button>
-          <button class="btn btn-outline-success" onclick="choice(1)">
+          <button class="btn" onclick="choice(1);">
             <img
               src="static/img/paper.png"
               class="img-fluid"
@@ -28,7 +34,7 @@
             />
             <span class="fw-bold">Papel</span>
           </button>
-          <button class="btn btn-outline-success" onclick="choice(2)">
+          <button class="btn" onclick="choice(2);">
             <img
               src="static/img/scissors.png"
               class="img-fluid"
@@ -43,17 +49,16 @@
       <div class="col py-5 text-center">
         <h2>Computadora</h2>
         <p class="fw-bold" id="computer_score">0</p>
-        <div class="card p-3">
-          <div class="d-flex justify-content-center">
-            <img
-              src="static/img/reload.png"
-              class="img-fluid"
-              alt="reload"
-              width="200px"
-              height="50px"
-              id="img_computer"
-            />
+        <div class="p-3">
+          <input type="checkbox" class="d-none flip-cpu" id="flip-cpu" />
+          <div class="result-computer" id="result-computer">
+            <img class="img-fluid" id="img_computer" />
           </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col text-center">
+          <button class="btn btn-success btn-lg" onclick="play()">Jugar</button>
         </div>
       </div>
     </div>

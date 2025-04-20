@@ -4,14 +4,35 @@ let imgArray = [
   "static/img/scissors.png",
 ];
 
+let selected = 0;
+
 function choice(x) {
-  fetch("/play?c=" + x)
+  selected = x;
+
+  playerImg = document.getElementById("player_choice_image");
+
+  if (selected == 0) {
+    playerImg.src = imgArray[selected];
+  } else if (selected == 1) {
+    playerImg.src = imgArray[selected];
+  } else {
+    playerImg.src = imgArray[selected];
+  }
+
+  console.log(selected);
+}
+
+function play() {
+  let checkbox = document.getElementById("flip-cpu");
+  checkbox.checked = false;
+
+  fetch("/play?c=" + selected)
     .then((response) => response.json())
     .then((data) => {
-      if (x == 0) {
+      if (selected == 0) {
         document.getElementById("player_choice").innerText =
           "El jugador eligio PIEDRA";
-      } else if (x == 1) {
+      } else if (selected == 1) {
         document.getElementById("player_choice").innerText =
           "El jugador eligio PAPEL";
       } else {
@@ -29,5 +50,6 @@ function choice(x) {
 
       var imgElement = document.getElementById("img_computer");
       imgElement.src = imgArray[data.computer_choice_int];
+      checkbox.checked = true;
     });
 }
